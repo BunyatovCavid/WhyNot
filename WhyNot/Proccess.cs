@@ -26,6 +26,7 @@ namespace WhyNot
 
         public void Speak()
         {
+            sentences[0] = " ";
             SpeechRecognitionEngine sr = new SpeechRecognitionEngine(new CultureInfo("en-US"));
             Grammar g = new DictationGrammar();
             sr.LoadGrammar(g);
@@ -33,7 +34,10 @@ namespace WhyNot
             {
                 sr.SetInputToDefaultAudioDevice();
                 RecognitionResult res = sr.Recognize();
-                sentence = res.Text;
+                if (res == null)
+                    sentence = "";
+                else
+                    sentence = res.Text;
                 if (sentence.ToLower() == "open" || sentence.ToLower() == "write")
                     sentences[0] = sentence;
                 else

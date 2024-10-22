@@ -15,7 +15,6 @@ namespace WhyNot
             {
                 proccess.Speak();
 
-                Console.ReadLine();
             }
             
         }
